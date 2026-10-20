@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chúc Mừng 20/10 Công Chúa Của Anh 💖👑</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <!-- QRious Library for Scannable QR Code Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --pink-glow: #ff4d94;
+            --rose-gold: #f6c1c7;
+            --deep-night: #090418;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Quicksand', sans-serif;
+            background: #1a061e;
+        }
+
+        .font-script {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .font-title {
+            font-family: 'Pacifico', cursive;
+        }
+
+        /* Background Transition Layers */
+        #bg-day-dream {
+            background: radial-gradient(circle at 50% 30%, #ffe6f2 0%, #ffb3d9 40%, #d98cb3 75%, #8c3f66 100%);
+            transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #bg-night-sky {
+            background: radial-gradient(ellipse at bottom, #260d3d 0%, #11052C 50%, #05010d 100%);
+            transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 3D Greeting Card Styles */
+        .scene-card {
+            perspective: 1600px;
+        }
+
+        .card-wrapper {
+            position: relative;
+            width: 340px;
+            height: 460px;
+            transform-style: preserve-3d;
+            transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease;
+        }
+
+        @media (min-width: 640px) {
+            .card-wrapper {
+                width: 400px;
+                height: 510px;
+            }
+        }
+
+        /* Floating idle animation for closed card */
+        .card-floating {
+            animation: cardFloat 3.5s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0px) rotate(-1deg); }
+            50% { transform: translateY(-14px) rotate(1.5deg); }
+        }
+
+        /* Card Front Cover (Flap) */
+        .card-front {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform-origin: left center;
+            transform-style: preserve-3d;
+            transition: transform 1.25s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 20;
+            border-radius: 24px;
+        }
+
+        .card-wrapper.is-open .card-front {
+            transform: rotateY(-165deg);
+        }
+
+        .card-wrapper.is-open {
+            transform: translateX(15px);
+        }
+
+        .card-front-face, .card-front-back {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 24px;
+        }
+
+        .card-front-face {
+            background: linear-gradient(145deg, #fff0f6 0%, #ffd6e7 50%, #ffadd2 100%);
+            border: 4px solid #ffffff;
+            box-shadow: 0 25px 50px -12px rgba(180, 24, 93, 0.45),
+                        inset 0 0 25px rgba(255, 255, 255, 0.8);
+        }
+
+        .card-front-back {
+            background: linear-gradient(135deg, #fff5f8 0%, #ffe3ee 100%);
+            transform: rotateY(180deg);
+            border: 4px solid #ffffff;
+            box-shadow: inset -10px 0 25px rgba(236, 72, 153, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Card Inside Base */
+        .card-inside {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #fffcfd 0%, #fff0f5 100%);
+            border-radius: 24px;
+            border: 4px solid #ffffff;
+            box-shadow: 0 25px 60px rgba(131, 24, 67, 0.45),
+                        inset 0 0 30px rgba(255, 182, 193, 0.35);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px 18px;
+            overflow: hidden;
+        }
+
+        /* Vanish transition for Stage 3 */
+        .card-vanish {
+            transform: scale(0.2) translateY(-180px) rotate(12deg) !important;
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+
+        /* Shimmer & Pulse animations */
+        @keyframes pulseGlow {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(255, 77, 148, 0.8));
+            }
+            50% {
+                transform: scale(1.09);
+                filter: drop-shadow(0 0 22px rgba(255, 20, 147, 1));
+            }
+        }
+
+        .pulse-glow {
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .spin-vinyl {
+            animation: spinSlow 6s linear infinite;
+        }
+
+        /* Stage 3 Floating Photo Cards & Love Messages */
+        #sky-floater-container {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 25;
+        }
+
+        .floating-memory {
+            position: absolute;
+            bottom: -360px;
+            pointer-events: auto;
+            cursor: pointer;
+            will-change: transform, bottom, opacity;
+            animation: floatUpSky linear forwards;
+            transition: filter 0.3s ease;
+        }
+
+        .floating-memory:hover {
+            z-index: 50 !important;
+            filter: brightness(1.1) drop-shadow(0 0 25px rgba(255, 105, 180, 0.95));
+        }
+
+        @keyframes floatUpSky {
+            0% {
+                transform: translateY(0) rotate(var(--start-rot, -4deg)) scale(0.85);
+                opacity: 0;
+            }
+            8% {
+                opacity: 1;
+                transform: translateY(-12vh) rotate(var(--mid-rot, 3deg)) scale(1);
+            }
+            50% {
+                transform: translateY(-65vh) translateX(var(--sway-x, 20px)) rotate(var(--start-rot, -3deg)) scale(1.02);
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.95;
+            }
+            100% {
+                transform: translateY(-138vh) translateX(calc(var(--sway-x, 20px) * -1)) rotate(var(--end-rot, 5deg)) scale(0.92);
+                opacity: 0;
+            }
+        }
+
+        .floating-quote {
+            position: absolute;
+            bottom: -100px;
+            pointer-events: none;
+            white-space: nowrap;
+            will-change: transform, opacity;
+            animation: floatUpQuote linear forwards;
+        }
+
+        @keyframes floatUpQuote {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 0;
+            }
+            12% {
+                opacity: 1;
+                transform: translateY(-15vh) scale(1);
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-125vh) scale(1.08);
+                opacity: 0;
+            }
+        }
+
+        /* Polaroid Frame Glow */
+        .polaroid-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 10px 26px 10px;
+            border-radius: 18px;
+            box-shadow: 0 12px 35px rgba(255, 77, 148, 0.45),
+                        0 0 18px rgba(255, 182, 213, 0.6),
+                        inset 0 0 8px rgba(255, 192, 203, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+
+        /* Neon Text Glow in Night Sky */
+        .neon-love-text {
+            color: #fff;
+            text-shadow:
+                0 0 7px #ff66b2,
+                0 0 14px #ff3399,
+                0 0 24px #ff007f,
+                0 0 42px #e60073;
+            background: rgba(35, 8, 52, 0.55);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 153, 204, 0.45);
+            padding: 8px 18px;
+            border-radius: 9999px;
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.35);
+        }
+
+        /* Custom Scrollbar */
+        .card-message-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .card-message-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 228, 235, 0.4);
+            border-radius: 10px;
+        }
+        .card-message-scroll::-webkit-scrollbar-thumb {
+            background: rgba(244, 114, 182, 0.6);
+            border-radius: 10px;
+        }
+
+        .ribbon-badge {
+            background: linear-gradient(135deg, #ff2e83 0%, #ff7eb3 100%);
+            box-shadow: 0 4px 15px rgba(255, 46, 131, 0.4);
+        }
+    </style>
+</head>
+<body class="relative w-full h-full select-none overflow-hidden">
+
+    <!-- ==================== BACKGROUND LAYERS ==================== -->
+    <div id="bg-day-dream" class="fixed inset-0 z-0 opacity-100"></div>
+    <div id="bg-night-sky" class="fixed inset-0 z-0 opacity-0 pointer-events-none"></div>
+    <canvas id="magic-canvas" class="fixed inset-0 z-10 pointer-events-none"></canvas>
+
+    <!-- Hidden YouTube Player for "Nơi Này Có Anh" (mXUpEm5MEa8) -->
+    <div id="yt-player-container" class="fixed -top-96 -left-96 w-1 h-1 opacity-0 pointer-events-none overflow-hidden">
+        <div id="youtube-player"></div>
+    </div>
+
+    <!-- ==================== TOP NAVIGATION BAR ==================== -->
+    <header class="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-3 sm:px-6 py-3 pointer-events-none">
+        <!-- Music Control Pill -->
+        <button id="btn-music-toggle" onclick="toggleMusic(event)" class="pointer-events-auto flex items-center gap-2.5 bg-white/85 hover:bg-white backdrop-blur-md text-pink-600 px-3.5 py-2 rounded-full shadow-lg border border-pink-200 transition-all transform active:scale-95">
+            <div id="vinyl-icon" class="w-7 h-7 rounded-full bg-gradient-to-tr from-pink-600 via-rose-400 to-amber-300 flex items-center justify-center text-white shadow-inner">
+                <i class="fa-solid fa-music text-xs"></i>
+            </div>
+            <div class="text-left leading-tight pr-1">
+                <p class="text-[11px] font-bold text-pink-700">Nơi Này Có Anh 🎵</p>
+                <p id="music-status-text" class="text-[10px] text-pink-500">Chạm màn hình phát nhạc</p>
+            </div>
+        </button>
+
+        <!-- QR Code Modal Button -->
+        <button id="btn-open-qr" onclick="openQRModal(event)" class="pointer-events-auto flex items-center gap-2 bg-gradient-to-r from-pink-600 via-rose-500 to-amber-500 hover:from-pink-500 hover:to-rose-400 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-xl border-2 border-white/80 pulse-glow transition-all transform active:scale-95">
+            <i class="fa-solid fa-qrcode text-base"></i>
+            <span>Lấy Mã QR Đẹp 💌</span>
+        </button>
+    </header>
+
+    <!-- ==================== STAGE 1 & 2: 3D GREETING CARD ==================== -->
+    <main id="stage-card-Area" onclick="handleScreenTouch(event)" class="relative z-20 w-full h-full flex flex-col items-center justify-center px-4 cursor-pointer">
+        
+        <div id="top-title-banner" class="mb-4 text-center transition-all duration-700">
+            <div class="inline-flex items-center gap-2 bg-white/75 backdrop-blur-md px-4 py-1.5 rounded-full shadow-md border border-pink-200 mb-1">
+                <span>👑</span>
+                <span class="text-xs sm:text-sm font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                    Dành Riêng Cho Công Chúa Của Anh
+                </span>
+                <span>🌷</span>
+            </div>
+        </div>
+
+        <div class="scene-card flex items-center justify-center">
+            <div id="greeting-card" class="card-wrapper card-floating">
+                
+                <!-- CARD FRONT COVER -->
+                <div class="card-front">
+                    <div class="card-front-face flex flex-col items-center justify-between p-6 relative overflow-hidden">
+                        <div class="absolute -top-3 -left-3 text-4xl opacity-80 transform -rotate-12">🌸</div>
+                        <div class="absolute -top-3 -right-3 text-4xl opacity-80 transform rotate-12">🌷</div>
+                        <div class="absolute -bottom-3 -left-3 text-4xl opacity-80 transform rotate-12">🌺</div>
+                        <div class="absolute -bottom-3 -right-3 text-4xl opacity-80 transform -rotate-12">🌹</div>
+
+                        <div class="w-full h-full border-2 border-dashed border-pink-400/70 rounded-2xl flex flex-col items-center justify-between p-4 bg-white/45 backdrop-blur-sm relative">
+                            
+                            <div class="flex flex-col items-center mt-1">
+                                <div class="text-4xl sm:text-5xl drop-shadow-md animate-bounce">👑</div>
+                                <span class="ribbon-badge text-white text-[11px] font-bold px-3 py-0.5 rounded-full tracking-wider uppercase mt-1">
+                                    Special Gift 20/10
+                                </span>
+                            </div>
+
+                            <div class="relative my-2 flex items-center justify-center">
+                                <div class="absolute -inset-3 rounded-full bg-gradient-to-r from-pink-400 via-rose-300 to-amber-200 opacity-75 blur-md animate-pulse"></div>
+                                <div class="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full p-1.5 bg-gradient-to-tr from-pink-500 via-rose-400 to-yellow-300 shadow-xl">
+                                    <img src="99665c852ca1acfff5b0.jpg" 
+                                         onerror="this.src='https://placehold.co/300x300/ff99cc/ffffff?text=20/10+Love'" 
+                                         alt="Couple" 
+                                         class="w-full h-full object-cover rounded-full border-2 border-white">
+                                    <div class="absolute -bottom-2 -right-1 text-2xl animate-bounce">💖</div>
+                                    <div class="absolute -top-2 -left-1 text-2xl animate-pulse">✨</div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <h1 class="font-script text-3xl sm:text-4xl font-bold text-pink-600 drop-shadow-sm">
+                                    Happy Women's Day
+                                </h1>
+                                <p class="text-pink-700 font-bold text-base sm:text-lg mt-0.5">
+                                    🌷 Ngày Phụ Nữ Việt Nam 20/10 🌷
+                                </p>
+                                <div class="flex items-center justify-center gap-1.5 mt-2 text-lg">
+                                    <span>🙆‍♀️</span><span>❤️</span><span>💚</span><span>🥰</span><span>😘</span>
+                                </div>
+                            </div>
+
+                            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-rose-500 to-pink-700 border-2 border-pink-200 shadow-lg flex items-center justify-center text-white text-lg pulse-glow">
+                                💌
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inside Left Flap -->
+                    <div class="card-front-back hidden sm:flex">
+                        <div class="w-full h-full border-2 border-pink-200 rounded-xl p-3 flex flex-col items-center justify-center bg-white/80 text-center relative overflow-hidden">
+                            <div class="text-2xl mb-2">🌸💑🌸</div>
+                            <div class="w-44 h-52 rounded-xl overflow-hidden shadow-md border-4 border-white transform -rotate-2 mb-3">
+                                <img src="f592405f307bb025e96a.jpg" 
+                                     onerror="this.src='https://placehold.co/300x400/ffb6c1/ffffff?text=Yeu+Em'" 
+                                     alt="Kỷ niệm" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <p class="font-script text-2xl text-pink-600 font-bold">Công chúa của anh 👑</p>
+                            <p class="text-xs text-pink-500 mt-1">Chạm thêm lần nữa để ngắm bầu trời sao nhé ✨</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD INSIDE RIGHT (THE MESSAGE) -->
+                <div class="card-inside">
+                    <div class="text-center border-b border-pink-200 pb-2 relative">
+                        <div class="flex justify-center items-center gap-1 text-lg sm:text-xl mb-0.5">
+                            <span>👑</span><span>🌷</span><span>💖</span><span>🙆‍♀️</span><span>💖</span><span>🌷</span><span>👑</span>
+                        </div>
+                        <h2 class="font-script text-2xl sm:text-3xl font-bold bg-gradient-to-r from-pink-600 via-rose-500 to-pink-600 bg-clip-text text-transparent">
+                            Gửi Cục Dàng Của Anh
+                        </h2>
+                        <span class="text-[11px] font-semibold text-pink-400 tracking-widest uppercase">
+                            ✦ Happy Women's Day 20/10 ✦
+                        </span>
+                    </div>
+
+                    <div class="flex items-center justify-center gap-2 my-1.5">
+                        <span class="text-xl animate-bounce">🥰</span>
+                        <div class="flex -space-x-2">
+                            <img src="99665c852ca1acfff5b0.jpg" class="w-10 h-10 rounded-full object-cover border-2 border-pink-300 shadow" alt="pic1">
+                            <img src="f492e38292a612f84bb7.jpg" class="w-10 h-10 rounded-full object-cover border-2 border-pink-300 shadow" alt="pic2">
+                            <img src="240138c748e3c8bd91f2.jpg" class="w-10 h-10 rounded-full object-cover border-2 border-pink-300 shadow" alt="pic3">
+                        </div>
+                        <span class="text-xl animate-bounce" style="animation-delay:0.3s">😘</span>
+                    </div>
+
+                    <div class="card-message-scroll flex-1 overflow-y-auto bg-gradient-to-b from-pink-50/90 to-rose-50/90 rounded-2xl p-3.5 sm:p-4 border border-pink-200/80 shadow-inner flex flex-col justify-center">
+                        <p class="text-gray-800 text-sm sm:text-[15px] leading-relaxed font-semibold text-center">
+                            🌸 Ngày Phụ nữ Việt Nam <span class="text-pink-600 font-bold">20/10</span>, anh muốn gửi đến em những lời chúc yêu thương nhất🙆‍♀️❤️❤️❤️.
+                        </p>
+                        <p class="text-gray-800 text-sm sm:text-[15px] leading-relaxed font-semibold text-center mt-2">
+                            ✨ Em là người đặc biệt trong cuộc đời anh, cảm ơn em vì đã luôn ở bên, chăm sóc và yêu thương anh.
+                        </p>
+                        <p class="text-gray-800 text-sm sm:text-[15px] leading-relaxed font-semibold text-center mt-2">
+                            🌷 Chúc em luôn hạnh phúc, mạnh khỏe và mãi xinh đẹp💚💚😘😘.
+                        </p>
+                        <div class="mt-2.5 pt-2 border-t border-pink-200/60 text-center">
+                            <p class="font-script text-xl sm:text-2xl font-bold text-pink-600 animate-pulse">
+                                Yêuuuu cục dànggg cụa ah nhứtt🥰😘😘😘😘
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 text-center">
+                        <div class="flex justify-center items-center gap-2 text-base">
+                            <span>💖</span><span>🌸</span><span>💏</span><span>💚</span><span>👑</span><span>✨</span>
+                        </div>
+                        <p class="text-[11px] font-bold text-pink-500 mt-1 animate-pulse">
+                            ✨ Chạm nhẹ lần nữa để đóng thiệp & bay vào bầu trời sao ✨
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="touch-instruction" class="mt-6 z-30 text-center">
+            <div class="inline-flex items-center gap-2.5 bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full shadow-xl border-2 border-pink-300 pulse-glow">
+                <span id="prompt-icon" class="text-xl">👆✨</span>
+                <span id="prompt-text" class="text-xs sm:text-sm font-bold text-pink-700">
+                    Chạm khẽ vào màn hình để mở thiệp nhé công chúa 💌
+                </span>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==================== STAGE 3: STARRY NIGHT FLOATING PHOTOS & LOVE QUOTES ==================== -->
+    <section id="stage-night-sky" onclick="spawnNightSkyHeartBurst(event)" class="fixed inset-0 z-25 hidden flex-col justify-between pointer-events-auto cursor-pointer">
+        
+        <div class="mt-16 sm:mt-14 text-center px-4 pointer-events-none z-30">
+            <h2 class="font-script text-3xl sm:text-5xl font-bold text-pink-200 drop-shadow-[0_0_15px_rgba(255,77,148,0.9)]">
+                ✨ Bầu Trời Yêu Thương Của Đôi Mình ✨
+            </h2>
+            <p class="text-xs sm:text-sm text-pink-100/90 mt-1 font-medium drop-shadow">
+                Chạm vào ảnh để ngắm rõ hơn hoặc chạm vào bầu trời để thả pháo hoa trái tim nhé 💖🌌
+            </p>
+        </div>
+
+        <div id="sky-floater-container"></div>
+
+        <div class="mb-5 px-4 flex flex-wrap items-center justify-center gap-3 z-30 pointer-events-auto">
+            <button onclick="reopenCardFromSky(event)" class="flex items-center gap-2 bg-white/15 hover:bg-white/25 backdrop-blur-md text-pink-100 border border-pink-300/50 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg transition-all active:scale-95">
+                <span>💌</span>
+                <span>Xem Lại Thiệp 20/10</span>
+            </button>
+            <button onclick="triggerHeartMeteorShower(event)" class="flex items-center gap-2 bg-gradient-to-r from-pink-500/80 to-purple-600/80 hover:from-pink-500 hover:to-purple-500 backdrop-blur-md text-white border border-pink-200/60 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg transition-all active:scale-95">
+                <span>🌠</span>
+                <span>Mưa Sao Băng & Trái Tim</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- ==================== PHOTO ZOOM LIGHTBOX MODAL ==================== -->
+    <div id="photo-lightbox" onclick="closePhotoLightbox()" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div onclick="event.stopPropagation()" class="relative max-w-sm w-full bg-white rounded-3xl p-4 pb-6 shadow-2xl border-4 border-pink-300 text-center transform transition-all">
+            <button onclick="closePhotoLightbox()" class="absolute -top-3 -right-3 w-9 h-9 rounded-full bg-pink-600 text-white font-bold shadow-lg flex items-center justify-center hover:bg-pink-500">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="rounded-2xl overflow-hidden max-h-[62vh] bg-pink-50 border border-pink-100">
+                <img id="lightbox-img" src="" alt="Kỷ niệm yêu thương" class="w-full h-full object-contain max-h-[60vh] mx-auto">
+            </div>
+            <p id="lightbox-caption" class="font-script text-2xl sm:text-3xl font-bold text-pink-600 mt-3"></p>
+            <div class="flex justify-center gap-2 mt-1 text-lg">
+                <span>🙆‍♀️</span><span>❤️</span><span>💚</span><span>🥰</span><span>😘</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== QR CODE GENERATOR & DOWNLOAD MODAL ==================== -->
+    <div id="qr-modal" onclick="closeQRModal()" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
+        <div onclick="event.stopPropagation()" class="relative bg-white rounded-3xl max-w-md w-full p-4 sm:p-6 shadow-2xl border-4 border-pink-300 my-auto">
+            
+            <button onclick="closeQRModal()" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-pink-100 hover:bg-pink-200 text-pink-600 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="text-center mb-3">
+                <span class="inline-block bg-pink-100 text-pink-600 text-xs font-bold px-3 py-1 rounded-full mb-1">
+                    👑 MÃ QR DÀNH TẶNG CÔNG CHÚA 20/10
+                </span>
+                <h3 class="font-script text-3xl font-bold text-pink-600">
+                    Thiệp QR Yêu Thương 💌
+                </h3>
+            </div>
+
+            <!-- Warning Notice if opened via local file:// or localhost -->
+            <div id="local-url-warning" class="hidden mb-3 p-2.5 rounded-xl bg-amber-50 border border-amber-300 text-[11px] text-amber-800 leading-relaxed">
+                ⚠️ <b>Lưu ý:</b> Bạn đang mở file trên máy tính cá nhân (<code class="font-bold">file://</code> hoặc <code class="font-bold">127.0.0.1</code>). Để điện thoại đi đâu quét cũng ra, hãy kéo thư mục <b>anh</b> lên <b>app.netlify.com/drop</b> (hoặc GitHub Pages) rồi dán link <code class="font-bold">https://...</code> vào ô bên dưới nhé!
+            </div>
+
+            <!-- QR Mode Selector Tabs -->
+            <div class="grid grid-cols-2 gap-1.5 bg-pink-50 p-1 rounded-xl border border-pink-200 mb-3">
+                <button id="tab-qr-url" onclick="switchQRMode('url')" class="py-1.5 px-2 rounded-lg text-xs font-bold bg-pink-600 text-white shadow transition-all">
+                    🌐 QR Mở Trang Web
+                </button>
+                <button id="tab-qr-text" onclick="switchQRMode('text')" class="py-1.5 px-2 rounded-lg text-xs font-bold text-pink-700 hover:bg-pink-100 transition-all">
+                    💌 QR Hiện Lời Chúc
+                </button>
+            </div>
+
+            <!-- URL Input -->
+            <div id="qr-url-input-box" class="mb-3">
+                <label class="block text-[11px] font-bold text-pink-700 mb-1">
+                    🔗 Dán link online của trang web vào đây để tạo QR:
+                </label>
+                <div class="flex gap-1.5">
+                    <input id="qr-custom-url" type="text" 
+                           placeholder="Ví dụ: https://thiep-20-10.netlify.app" 
+                           oninput="renderPrettyQRCard()"
+                           class="flex-1 text-xs px-3 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400 text-gray-700 bg-pink-50/40">
+                    <button onclick="resetDefaultURL()" class="px-3 py-2 bg-pink-100 hover:bg-pink-200 text-pink-700 rounded-xl text-xs font-bold">
+                        Hiện tại
+                    </button>
+                </div>
+            </div>
+
+            <!-- Rendered Printable/Shareable Pretty QR Card Canvas -->
+            <div class="flex justify-center my-2">
+                <div class="p-2 rounded-2xl bg-gradient-to-tr from-pink-200 via-rose-100 to-amber-100 shadow-inner border border-pink-300">
+                    <canvas id="pretty-qr-canvas" width="600" height="760" class="w-60 sm:w-64 h-auto rounded-xl shadow-md bg-white"></canvas>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-2.5 mt-4">
+                <button onclick="downloadPrettyQR()" class="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-500 hover:to-rose-400 text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-lg transition-all transform active:scale-95">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Tải Ảnh Thiệp QR (PNG Nét Cao)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+    <script>
+        const COUPLE_PHOTOS = [
+            {
+                src: '99665c852ca1acfff5b0.jpg',
+                caption: 'Anh yêu bé nhiều lắm ❤️✨'
+            },
+            {
+                src: '240138c748e3c8bd91f2.jpg',
+                caption: 'Yêu xíuuu 😘💖'
+            },
+            {
+                src: 'f592405f307bb025e96a.jpg',
+                caption: 'Yêu công chúa thật đẹp 👑🌷'
+            },
+            {
+                src: '4da68618f63c76622f2d.jpg',
+                caption: 'Yêuuuu cục dànggg cụa ah nhứtt 🥰😘'
+            },
+            {
+                src: 'f492e38292a612f84bb7.jpg',
+                caption: 'Nơi này có anh, mãi bên em nhé 💑🌙'
+            }
+        ];
+
+        const FLOATING_LOVE_QUOTES = [
+            "Anh yêu bé nhiều lắm ❤️✨",
+            "Yêu xíuuu 😘💖",
+            "Yêu công chúa thật đẹp 👑🌷",
+            "Yêuuuu cục dànggg cụa ah nhứtt 🥰😘😘😘😘",
+            "Chúc công chúa 20/10 mãi xinh đẹp 💚💚😘😘",
+            "Em là người đặc biệt trong cuộc đời anh 🙆‍♀️❤️❤️❤️",
+            "Cảm ơn em vì đã luôn ở bên anh 💑🌸",
+            "Nơi này có anh, yêu cục dàng nhứtt 🌙💖"
+        ];
+
+        const FULL_WISH_TEXT = "Ngày Phụ nữ Việt Nam 20/10, anh muốn gửi đến em những lời chúc yêu thương nhất🙆‍♀️❤️❤️❤️. Em là người đặc biệt trong cuộc đời anh, cảm ơn em vì đã luôn ở bên, chăm sóc và yêu thương anh. Chúc em luôn hạnh phúc, mạnh khỏe và mãi xinh đẹp💚💚😘😘. Yêuuuu cục dànggg cụa ah nhứtt🥰😘😘😘😘";
+
+        let currentStage = 0;
+        let isTransitioning = false;
+        let photoFloatInterval = null;
+        let quoteFloatInterval = null;
+        let currentPhotoIndex = 0;
+        let currentQuoteIndex = 0;
+
+        function handleScreenTouch(event) {
+            if (isTransitioning) return;
+
+            const clientX = event.clientX || window.innerWidth / 2;
+            const clientY = event.clientY || window.innerHeight / 2;
+            createSparkleBurst(clientX, clientY, 36);
+
+            startMusicOnInteraction();
+
+            const cardEl = document.getElementById('greeting-card');
+            const promptText = document.getElementById('prompt-text');
+            const promptIcon = document.getElementById('prompt-icon');
+
+            if (currentStage === 0) {
+                isTransitioning = true;
+                currentStage = 1;
+
+                cardEl.classList.remove('card-floating');
+                cardEl.classList.add('is-open');
+
+                setTimeout(() => createSparkleBurst(window.innerWidth * 0.25, window.innerHeight * 0.35, 28), 200);
+                setTimeout(() => createSparkleBurst(window.innerWidth * 0.75, window.innerHeight * 0.35, 28), 400);
+                setTimeout(() => createSparkleBurst(window.innerWidth * 0.5, window.innerHeight * 0.2, 35), 650);
+
+                promptIcon.textContent = "🌌💖";
+                promptText.textContent = "Chạm thêm lần nữa để đóng thiệp & ngắm bầu trời yêu thương ✨";
+
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 900);
+
+            } else if (currentStage === 1) {
+                isTransitioning = true;
+                currentStage = 2;
+
+                cardEl.classList.remove('is-open');
+                promptText.textContent = "Đang mở bầu trời ngàn sao cho công chúa... 🌠";
+
+                setTimeout(() => {
+                    createSparkleBurst(window.innerWidth / 2, window.innerHeight / 2, 65);
+                    cardEl.classList.add('card-vanish');
+                    document.getElementById('touch-instruction').style.opacity = '0';
+                    document.getElementById('top-title-banner').style.opacity = '0';
+
+                    document.getElementById('bg-day-dream').style.opacity = '0';
+                    document.getElementById('bg-night-sky').style.opacity = '1';
+
+                    isNightSkyMode = true;
+                    initNightStars();
+                }, 700);
+
+                setTimeout(() => {
+                    document.getElementById('stage-card-Area').classList.add('hidden');
+                    const nightSection = document.getElementById('stage-night-sky');
+                    nightSection.classList.remove('hidden');
+                    nightSection.classList.add('flex');
+
+                    startFloatingMemoriesAndQuotes();
+                    isTransitioning = false;
+                }, 1550);
+            }
+        }
+
+        function reopenCardFromSky(event) {
+            if (event) event.stopPropagation();
+            if (isTransitioning) return;
+            isTransitioning = true;
+
+            stopFloatingMemoriesAndQuotes();
+            isNightSkyMode = false;
+
+            const nightSection = document.getElementById('stage-night-sky');
+            nightSection.classList.add('hidden');
+            nightSection.classList.remove('flex');
+
+            document.getElementById('bg-night-sky').style.opacity = '0';
+            document.getElementById('bg-day-dream').style.opacity = '1';
+
+            const stageCardArea = document.getElementById('stage-card-Area');
+            stageCardArea.classList.remove('hidden');
+
+            const cardEl = document.getElementById('greeting-card');
+            cardEl.classList.remove('card-vanish');
+            cardEl.classList.add('is-open');
+
+            document.getElementById('touch-instruction').style.opacity = '1';
+            document.getElementById('top-title-banner').style.opacity = '1';
+            document.getElementById('prompt-text').textContent = "Chạm thêm lần nữa để đóng thiệp & ngắm bầu trời yêu thương ✨";
+
+            currentStage = 1;
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 600);
+        }
+
+        function startFloatingMemoriesAndQuotes() {
+            stopFloatingMemoriesAndQuotes();
+            const container = document.getElementById('sky-floater-container');
+            container.innerHTML = '';
+
+            spawnNextFloatingPhoto();
+            setTimeout(() => spawnNextFloatingQuote(), 900);
+
+            photoFloatInterval = setInterval(() => {
+                spawnNextFloatingPhoto();
+            }, 3400);
+
+            quoteFloatInterval = setInterval(() => {
+                spawnNextFloatingQuote();
+            }, 2200);
+        }
+
+        function stopFloatingMemoriesAndQuotes() {
+            if (photoFloatInterval) clearInterval(photoFloatInterval);
+            if (quoteFloatInterval) clearInterval(quoteFloatInterval);
+            photoFloatInterval = null;
+            quoteFloatInterval = null;
+        }
+
+        function spawnNextFloatingPhoto() {
+            const container = document.getElementById('sky-floater-container');
+            if (!container) return;
+
+            const photoData = COUPLE_PHOTOS[currentPhotoIndex % COUPLE_PHOTOS.length];
+            currentPhotoIndex++;
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'floating-memory';
+
+            const isMobile = window.innerWidth < 640;
+            const cardWidth = isMobile ? 185 : 230;
+            const minX = 16;
+            const maxX = Math.max(minX + 20, window.innerWidth - cardWidth - 16);
+
+            const lane = currentPhotoIndex % 3;
+            let posX;
+            if (lane === 0) {
+                posX = minX + Math.random() * ((maxX - minX) * 0.3);
+            } else if (lane === 1) {
+                posX = minX + (maxX - minX) * 0.35 + Math.random() * ((maxX - minX) * 0.3);
+            } else {
+                posX = minX + (maxX - minX) * 0.65 + Math.random() * ((maxX - minX) * 0.35);
+            }
+
+            const duration = isMobile ? 14 : 16;
+            const startRot = (Math.random() * 10 - 5).toFixed(1) + 'deg';
+            const midRot = (Math.random() * 8 - 4).toFixed(1) + 'deg';
+            const endRot = (Math.random() * 12 - 6).toFixed(1) + 'deg';
+            const swayX = (Math.random() * 50 - 25).toFixed(0) + 'px';
+
+            wrapper.style.left = `${posX}px`;
+            wrapper.style.width = `${cardWidth}px`;
+            wrapper.style.animationDuration = `${duration}s`;
+            wrapper.style.setProperty('--start-rot', startRot);
+            wrapper.style.setProperty('--mid-rot', midRot);
+            wrapper.style.setProperty('--end-rot', endRot);
+            wrapper.style.setProperty('--sway-x', swayX);
+
+            wrapper.innerHTML = `
+                <div class="polaroid-card group">
+                    <div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-gradient-to-r from-pink-500 to-rose-400 text-white flex items-center justify-center text-sm shadow-md">
+                        💖
+                    </div>
+                    <div class="w-full h-44 sm:h-52 rounded-xl overflow-hidden bg-pink-50">
+                        <img src="${photoData.src}" 
+                             onerror="this.src='https://placehold.co/300x360/ff80bf/ffffff?text=Yeu+Be+20/10'"
+                             alt="Kỷ niệm" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <p class="font-script text-lg sm:text-xl font-bold text-pink-600 text-center mt-2 leading-tight">
+                        ${photoData.caption}
+                    </p>
+                </div>
+            `;
+
+            wrapper.onclick = (e) => {
+                e.stopPropagation();
+                openPhotoLightbox(photoData.src, photoData.caption);
+            };
+
+            container.appendChild(wrapper);
+
+            setTimeout(() => {
+                if (wrapper.parentNode) wrapper.remove();
+            }, duration * 1000);
+        }
+
+        function spawnNextFloatingQuote() {
+            const container = document.getElementById('sky-floater-container');
+            if (!container) return;
+
+            const quoteText = FLOATING_LOVE_QUOTES[currentQuoteIndex % FLOATING_LOVE_QUOTES.length];
+            currentQuoteIndex++;
+
+            const el = document.createElement('div');
+            el.className = 'floating-quote';
+
+            const duration = 10 + Math.random() * 4;
+            const leftPercent = 8 + Math.random() * 62;
+
+            el.style.left = `${leftPercent}%`;
+            el.style.animationDuration = `${duration}s`;
+
+            el.innerHTML = `
+                <div class="neon-love-text font-script text-xl sm:text-2xl font-bold flex items-center gap-2">
+                    <span>✨</span>
+                    <span>${quoteText}</span>
+                    <span>💖</span>
+                </div>
+            `;
+
+            container.appendChild(el);
+
+            setTimeout(() => {
+                if (el.parentNode) el.remove();
+            }, duration * 1000);
+        }
+
+        function openPhotoLightbox(src, caption) {
+            const modal = document.getElementById('photo-lightbox');
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-caption').textContent = caption;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closePhotoLightbox() {
+            const modal = document.getElementById('photo-lightbox');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        /* ==============================================================
+         * MUSIC ENGINE: YOUTUBE ("NƠI NÀY CÓ ANH" - mXUpEm5MEa8)
+         * ============================================================== */
+        let ytPlayer = null;
+        let isYTReady = false;
+        let isMusicPlaying = false;
+        let musicStartedOnce = false;
+        let audioCtx = null;
+        let fallbackInterval = null;
+        let usingFallbackAudio = false;
+
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        window.onYouTubeIframeAPIReady = function() {
+            ytPlayer = new YT.Player('youtube-player', {
+                height: '10',
+                width: '10',
+                videoId: 'mXUpEm5MEa8',
+                playerVars: {
+                    autoplay: 1,
+                    loop: 1,
+                    playlist: 'mXUpEm5MEa8',
+                    controls: 0,
+                    playsinline: 1,
+                    rel: 0
+                },
+                events: {
+                    onReady: function(event) {
+                        isYTReady = true;
+                        event.target.setVolume(100);
+                        try {
+                            event.target.playVideo();
+                        } catch (e) {}
+                    },
+                    onStateChange: function(event) {
+                        if (event.data === YT.PlayerState.PLAYING) {
+                            isMusicPlaying = true;
+                            stopFallbackSynth();
+                            updateMusicUI(true);
+                        } else if (event.data === YT.PlayerState.ENDED) {
+                            ytPlayer.playVideo();
+                        }
+                    },
+                    onError: function() {
+                        startFallbackSynth();
+                    }
+                }
+            });
+        };
+
+        function startMusicOnInteraction() {
+            if (musicStartedOnce && isMusicPlaying) return;
+            musicStartedOnce = true;
+
+            if (isYTReady && ytPlayer && typeof ytPlayer.playVideo === 'function') {
+                try {
+                    ytPlayer.unMute();
+                    ytPlayer.setVolume(100);
+                    ytPlayer.playVideo();
+                    isMusicPlaying = true;
+                    updateMusicUI(true);
+                    setTimeout(() => {
+                        if (ytPlayer.getPlayerState && ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING && ytPlayer.getPlayerState() !== YT.PlayerState.BUFFERING) {
+                            startFallbackSynth();
+                        }
+                    }, 1200);
+                } catch (err) {
+                    startFallbackSynth();
+                }
+            } else {
+                startFallbackSynth();
+            }
+        }
+
+        function toggleMusic(event) {
+            if (event) event.stopPropagation();
+
+            if (!isMusicPlaying) {
+                if (isYTReady && ytPlayer && typeof ytPlayer.playVideo === 'function') {
+                    ytPlayer.unMute();
+                    ytPlayer.playVideo();
+                } else {
+                    startFallbackSynth();
+                }
+                isMusicPlaying = true;
+                updateMusicUI(true);
+            } else {
+                if (isYTReady && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+                    ytPlayer.pauseVideo();
+                }
+                stopFallbackSynth();
+                isMusicPlaying = false;
+                updateMusicUI(false);
+            }
+        }
+
+        function updateMusicUI(playing) {
+            const vinyl = document.getElementById('vinyl-icon');
+            const statusText = document.getElementById('music-status-text');
+            if (playing) {
+                vinyl.classList.add('spin-vinyl');
+                statusText.textContent = "Đang phát: Nơi Này Có Anh 💖";
+            } else {
+                vinyl.classList.remove('spin-vinyl');
+                statusText.textContent = "Nhạc đang tạm dừng (Chạm để bật)";
+            }
+        }
+
+        function startFallbackSynth() {
+            if (usingFallbackAudio) return;
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!audioCtx) audioCtx = new AudioContext();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                usingFallbackAudio = true;
+                isMusicPlaying = true;
+                updateMusicUI(true);
+
+                const melody = [
+                    523.25, 587.33, 659.25, 783.99, 659.25, 587.33, 523.25, 587.33,
+                    659.25, 880.00, 783.99, 659.25, 587.33, 523.25, 440.00, 523.25
+                ];
+                let noteIdx = 0;
+
+                fallbackInterval = setInterval(() => {
+                    if (!isMusicPlaying) return;
+                    const freq = melody[noteIdx % melody.length];
+                    noteIdx++;
+
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+                    gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.08, audioCtx.currentTime + 0.05);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.1);
+
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 1.15);
+                }, 480);
+            } catch (e) {}
+        }
+
+        function stopFallbackSynth() {
+            usingFallbackAudio = false;
+            if (fallbackInterval) {
+                clearInterval(fallbackInterval);
+                fallbackInterval = null;
+            }
+        }
+
+        /* ==============================================================
+         * PARTICLE ENGINE
+         * ============================================================== */
+        const canvas = document.getElementById('magic-canvas');
+        const ctx = canvas.getContext('2d');
+        let isNightSkyMode = false;
+
+        let petals = [];
+        let sparkles = [];
+        let nightStars = [];
+        let shootingStars = [];
+        let floatingBgHearts = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function initPetals() {
+            petals = [];
+            for (let i = 0; i < 32; i++) {
+                petals.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: 6 + Math.random() * 8,
+                    speedY: 0.6 + Math.random() * 1.2,
+                    speedX: -0.5 + Math.random() * 1,
+                    angle: Math.random() * Math.PI * 2,
+                    spin: (Math.random() - 0.5) * 0.03,
+                    opacity: 0.45 + Math.random() * 0.45
+                });
+            }
+        }
+
+        function initNightStars() {
+            nightStars = [];
+            const starCount = window.innerWidth < 640 ? 130 : 240;
+            for (let i = 0; i < starCount; i++) {
+                nightStars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: 0.6 + Math.random() * 2.1,
+                    alpha: Math.random(),
+                    twinkleSpeed: 0.01 + Math.random() * 0.03,
+                    color: ['#ffffff', '#ffe6f2', '#ffb3d9', '#e6ccff', '#fff5cc'][Math.floor(Math.random() * 5)]
+                });
+            }
+
+            floatingBgHearts = [];
+            for (let i = 0; i < 28; i++) {
+                floatingBgHearts.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: 8 + Math.random() * 16,
+                    speedY: 0.35 + Math.random() * 0.85,
+                    swayOffset: Math.random() * Math.PI * 2,
+                    alpha: 0.25 + Math.random() * 0.55,
+                    color: ['#ff4d94', '#ff80b3', '#ff1a75', '#d966ff'][Math.floor(Math.random() * 4)]
+                });
+            }
+        }
+
+        function createSparkleBurst(x, y, count = 30) {
+            const colors = ['#ff1a75', '#ff66b3', '#ffd700', '#ffffff', '#ff99cc', '#70db70'];
+            for (let i = 0; i < count; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = 1.5 + Math.random() * 6.5;
+                sparkles.push({
+                    x: x,
+                    y: y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - 1,
+                    size: 3 + Math.random() * 5,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    alpha: 1,
+                    decay: 0.014 + Math.random() * 0.018,
+                    isHeart: Math.random() > 0.45
+                });
+            }
+        }
+
+        function spawnNightSkyHeartBurst(event) {
+            const x = event.clientX || window.innerWidth / 2;
+            const y = event.clientY || window.innerHeight / 2;
+            createSparkleBurst(x, y, 42);
+        }
+
+        function triggerHeartMeteorShower(event) {
+            if (event) event.stopPropagation();
+            for (let i = 0; i < 6; i++) {
+                setTimeout(() => {
+                    shootingStars.push({
+                        x: Math.random() * canvas.width * 0.8 + canvas.width * 0.2,
+                        y: Math.random() * canvas.height * 0.35,
+                        length: 90 + Math.random() * 70,
+                        speed: 9 + Math.random() * 6,
+                        alpha: 1
+                    });
+                    createSparkleBurst(
+                        Math.random() * (canvas.width * 0.7) + canvas.width * 0.15,
+                        Math.random() * (canvas.height * 0.5) + canvas.height * 0.15,
+                        30
+                    );
+                }, i * 280);
+            }
+        }
+
+        function drawHeartShape(ctx, x, y, size, color, alpha) {
+            ctx.save();
+            ctx.globalAlpha = Math.max(0, alpha);
+            ctx.fillStyle = color;
+            ctx.shadowColor = color;
+            ctx.shadowBlur = 10;
+            ctx.beginPath();
+            const topCurveHeight = size * 0.3;
+            ctx.moveTo(x, y + topCurveHeight);
+            ctx.bezierCurveTo(x, y, x - size / 2, y, x - size / 2, y + topCurveHeight);
+            ctx.bezierCurveTo(x - size / 2, y + (size + topCurveHeight) / 2, x, y + (size + topCurveHeight) / 1.4, x, y + size);
+            ctx.bezierCurveTo(x, y + (size + topCurveHeight) / 1.4, x + size / 2, y + (size + topCurveHeight) / 2, x + size / 2, y + topCurveHeight);
+            ctx.bezierCurveTo(x + size / 2, y, x, y, x, y + topCurveHeight);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (!isNightSkyMode) {
+                petals.forEach(p => {
+                    p.y += p.speedY;
+                    p.x += p.speedX + Math.sin(p.angle) * 0.4;
+                    p.angle += p.spin;
+
+                    if (p.y > canvas.height + 20) {
+                        p.y = -15;
+                        p.x = Math.random() * canvas.width;
+                    }
+
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.angle);
+                    ctx.globalAlpha = p.opacity;
+                    ctx.fillStyle = '#ff80bf';
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, p.size, p.size * 0.6, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                });
+            } else {
+                nightStars.forEach(star => {
+                    star.alpha += star.twinkleSpeed;
+                    if (star.alpha > 1 || star.alpha < 0.2) {
+                        star.twinkleSpeed = -star.twinkleSpeed;
+                    }
+
+                    ctx.save();
+                    ctx.globalAlpha = Math.max(0.1, Math.min(1, star.alpha));
+                    ctx.fillStyle = star.color;
+                    ctx.shadowColor = star.color;
+                    ctx.shadowBlur = 6;
+                    ctx.beginPath();
+                    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                });
+
+                floatingBgHearts.forEach(h => {
+                    h.y -= h.speedY;
+                    h.swayOffset += 0.02;
+                    const drawX = h.x + Math.sin(h.swayOffset) * 15;
+
+                    if (h.y < -30) {
+                        h.y = canvas.height + 20;
+                        h.x = Math.random() * canvas.width;
+                    }
+                    drawHeartShape(ctx, drawX, h.y, h.size, h.color, h.alpha);
+                });
+
+                if (Math.random() < 0.022) {
+                    shootingStars.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height * 0.4,
+                        length: 80 + Math.random() * 60,
+                        speed: 8 + Math.random() * 5,
+                        alpha: 1
+                    });
+                }
+
+                for (let i = shootingStars.length - 1; i >= 0; i--) {
+                    const s = shootingStars[i];
+                    s.x -= s.speed;
+                    s.y += s.speed * 0.55;
+                    s.alpha -= 0.018;
+
+                    if (s.alpha <= 0) {
+                        shootingStars.splice(i, 1);
+                        continue;
+                    }
+
+                    ctx.save();
+                    const grad = ctx.createLinearGradient(s.x, s.y, s.x + s.length, s.y - s.length * 0.55);
+                    grad.addColorStop(0, `rgba(255, 255, 255, ${s.alpha})`);
+                    grad.addColorStop(0.4, `rgba(255, 128, 191, ${s.alpha * 0.8})`);
+                    grad.addColorStop(1, 'rgba(255, 77, 148, 0)');
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = 2.5;
+                    ctx.beginPath();
+                    ctx.moveTo(s.x, s.y);
+                    ctx.lineTo(s.x + s.length, s.y - s.length * 0.55);
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            }
+
+            for (let i = sparkles.length - 1; i >= 0; i--) {
+                const sp = sparkles[i];
+                sp.x += sp.vx;
+                sp.y += sp.vy;
+                sp.vy += 0.08;
+                sp.alpha -= sp.decay;
+
+                if (sp.alpha <= 0) {
+                    sparkles.splice(i, 1);
+                    continue;
+                }
+
+                if (sp.isHeart) {
+                    drawHeartShape(ctx, sp.x, sp.y, sp.size * 2.2, sp.color, sp.alpha);
+                } else {
+                    ctx.save();
+                    ctx.globalAlpha = sp.alpha;
+                    ctx.fillStyle = sp.color;
+                    ctx.shadowColor = sp.color;
+                    ctx.shadowBlur = 8;
+                    ctx.beginPath();
+                    ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            requestAnimationFrame(animateCanvas);
+        }
+
+        /* ==============================================================
+         * HIGH-CONTRAST SCANNABLE QR CODE GENERATOR
+         * ============================================================== */
+        let currentQRMode = 'url';
+        let qrLogoImage = new Image();
+        qrLogoImage.src = '99665c852ca1acfff5b0.jpg';
+        qrLogoImage.onload = () => renderPrettyQRCard();
+
+        function checkLocalUrlWarning(urlStr) {
+            const warnEl = document.getElementById('local-url-warning');
+            if (!warnEl) return;
+            const isLocal = urlStr.startsWith('file://') ||
+                            urlStr.includes('127.0.0.1') ||
+                            urlStr.includes('localhost') ||
+                            urlStr.startsWith('about:');
+            if (isLocal && currentQRMode === 'url') {
+                warnEl.classList.remove('hidden');
+            } else {
+                warnEl.classList.add('hidden');
+            }
+        }
+
+        function openQRModal(event) {
+            if (event) event.stopPropagation();
+            const modal = document.getElementById('qr-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            const urlInput = document.getElementById('qr-custom-url');
+            if (!urlInput.value || urlInput.value.startsWith('about:')) {
+                urlInput.value = window.location.href;
+            }
+            renderPrettyQRCard();
+        }
+
+        function closeQRModal() {
+            const modal = document.getElementById('qr-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function switchQRMode(mode) {
+            currentQRMode = mode;
+            const tabUrl = document.getElementById('tab-qr-url');
+            const tabText = document.getElementById('tab-qr-text');
+            const urlBox = document.getElementById('qr-url-input-box');
+
+            if (mode === 'url') {
+                tabUrl.className = "py-1.5 px-2 rounded-lg text-xs font-bold bg-pink-600 text-white shadow transition-all";
+                tabText.className = "py-1.5 px-2 rounded-lg text-xs font-bold text-pink-700 hover:bg-pink-100 transition-all";
+                urlBox.classList.remove('hidden');
+            } else {
+                tabText.className = "py-1.5 px-2 rounded-lg text-xs font-bold bg-pink-600 text-white shadow transition-all";
+                tabUrl.className = "py-1.5 px-2 rounded-lg text-xs font-bold text-pink-700 hover:bg-pink-100 transition-all";
+                urlBox.classList.add('hidden');
+            }
+            renderPrettyQRCard();
+        }
+
+        function resetDefaultURL() {
+            document.getElementById('qr-custom-url').value = window.location.href;
+            renderPrettyQRCard();
+        }
+
+        function renderPrettyQRCard() {
+            const qrCanvas = document.getElementById('pretty-qr-canvas');
+            if (!qrCanvas) return;
+            const qCtx = qrCanvas.getContext('2d');
+            const W = qrCanvas.width;
+            const H = qrCanvas.height;
+
+            let rawInput = document.getElementById('qr-custom-url').value.trim() || window.location.href;
+            checkLocalUrlWarning(rawInput);
+
+            // 1. Romantic Gradient Background
+            const bgGrad = qCtx.createLinearGradient(0, 0, W, H);
+            bgGrad.addColorStop(0, '#fff0f6');
+            bgGrad.addColorStop(0.5, '#ffd6e7');
+            bgGrad.addColorStop(1, '#ffadd2');
+            qCtx.fillStyle = bgGrad;
+            qCtx.fillRect(0, 0, W, H);
+
+            // 2. Borders
+            qCtx.strokeStyle = '#ffffff';
+            qCtx.lineWidth = 10;
+            qCtx.strokeRect(18, 18, W - 36, H - 36);
+
+            qCtx.strokeStyle = '#eb2f96';
+            qCtx.lineWidth = 3;
+            qCtx.setLineDash([10, 8]);
+            qCtx.strokeRect(32, 32, W - 64, H - 64);
+            qCtx.setLineDash([]);
+
+            // 3. Header
+            qCtx.fillStyle = '#c41d7f';
+            qCtx.font = 'bold 34px "Quicksand", sans-serif';
+            qCtx.textAlign = 'center';
+            qCtx.fillText('👑 HAPPY WOMEN\'S DAY 20/10 👑', W / 2, 88);
+
+            qCtx.fillStyle = '#eb2f96';
+            qCtx.font = 'bold 42px "Dancing Script", cursive';
+            qCtx.fillText('Món Quà Bí Mật Tặng Công Chúa', W / 2, 138);
+
+            // 4. White Quiet-Zone Box for QR Code
+            const boxSize = 400;
+            const boxX = (W - boxSize) / 2;
+            const boxY = 170;
+
+            qCtx.save();
+            qCtx.fillStyle = '#ffffff';
+            qCtx.shadowColor = 'rgba(219, 39, 119, 0.28)';
+            qCtx.shadowBlur = 25;
+            qCtx.beginPath();
+            qCtx.roundRect(boxX, boxY, boxSize, boxSize, 28);
+            qCtx.fill();
+            qCtx.restore();
+
+            // 5. Generate High-Contrast Scannable QR Code
+            let qrValue = rawInput;
+            if (currentQRMode === 'text') {
+                qrValue = FULL_WISH_TEXT;
+            }
+
+            const tempQRCanvas = document.createElement('canvas');
+            new QRious({
+                element: tempQRCanvas,
+                value: qrValue,
+                size: 350,
+                padding: 16, // Quiet zone margin so phone cameras lock on immediately
+                level: 'H',
+                background: '#ffffff',
+                foreground: '#3b0422' // Deep high-contrast tone for instant camera scanning
+            });
+
+            qCtx.drawImage(tempQRCanvas, boxX + 25, boxY + 25, 350, 350);
+
+            // 6. Compact Center Badge (26px radius so it never blocks QR data modules)
+            const centerX = W / 2;
+            const centerY = boxY + boxSize / 2;
+            const logoRadius = 26;
+
+            qCtx.save();
+            qCtx.beginPath();
+            qCtx.arc(centerX, centerY, logoRadius + 4, 0, Math.PI * 2);
+            qCtx.fillStyle = '#ffffff';
+            qCtx.fill();
+            qCtx.lineWidth = 2.5;
+            qCtx.strokeStyle = '#ff2e83';
+            qCtx.stroke();
+            qCtx.restore();
+
+            try {
+                if (qrLogoImage && qrLogoImage.complete && qrLogoImage.naturalWidth > 0) {
+                    qCtx.save();
+                    qCtx.beginPath();
+                    qCtx.arc(centerX, centerY, logoRadius, 0, Math.PI * 2);
+                    qCtx.closePath();
+                    qCtx.clip();
+                    qCtx.drawImage(qrLogoImage, centerX - logoRadius, centerY - logoRadius, logoRadius * 2, logoRadius * 2);
+                    qCtx.restore();
+                } else {
+                    qCtx.font = '26px sans-serif';
+                    qCtx.fillText('💖', centerX, centerY + 9);
+                }
+            } catch (e) {
+                qCtx.font = '26px sans-serif';
+                qCtx.fillText('💖', centerX, centerY + 9);
+            }
+
+            // 7. Footer Caption
+            qCtx.fillStyle = '#9e1068';
+            qCtx.font = 'bold 23px "Quicksand", sans-serif';
+            qCtx.fillText('📱 Quét mã QR để mở thiệp & nghe nhạc nhé 💌', W / 2, 622);
+
+            qCtx.fillStyle = '#eb2f96';
+            qCtx.font = 'bold 34px "Dancing Script", cursive';
+            qCtx.fillText('Yêuuuu cục dànggg cụa ah nhứtt 🥰😘😘😘', W / 2, 672);
+
+            qCtx.font = '26px sans-serif';
+            qCtx.fillText('🌸 🙆‍♀️ ❤️ ❤️ ❤️ 💚 💚 😘 😘 🌷', W / 2, 715);
+        }
+
+        function downloadPrettyQR() {
+            renderPrettyQRCard();
+            const qrCanvas = document.getElementById('pretty-qr-canvas');
+            try {
+                const link = document.createElement('a');
+                link.download = 'Thiep-QR-20-10-Tang-Cong-Chua.png';
+                link.href = qrCanvas.toDataURL('image/png');
+                link.click();
+            } catch (err) {
+                alert("Nếu trình duyệt chặn tải ảnh khi mở từ ổ cứng (file://), bạn hãy chạy bằng Live Server trong VS Code hoặc sau khi đưa lên Netlify/GitHub Pages nhé!");
+            }
+        }
+
+        window.onload = function() {
+            initPetals();
+            animateCanvas();
+            const urlInput = document.getElementById('qr-custom-url');
+            if (urlInput) urlInput.value = window.location.href;
+            setTimeout(renderPrettyQRCard, 300);
+        };
+    </script>
+</body>
+</html>
